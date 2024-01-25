@@ -1,4 +1,4 @@
-Design phases. 
+Design phases. aa
 1. Data requirements
 First point, the bank is organized into branches. each branch is located in a particular city and is identified by a unique name, the bank
 monitors the assets of each branch.
