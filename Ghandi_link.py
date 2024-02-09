@@ -54,3 +54,6 @@ for page in range(1,20):
 
         print(book_data)
 
+
+img_element = soup.select('div.single-image-product a img')
+#img = img_element[0]['src'] if img_element else None
