@@ -58,10 +58,10 @@ class BookScraper:
 
     def _get_characteristics(self, soup):
         characteristics_dict = {}
-        characteristics_dict['pages'] = self._get_text(soup.find('li', {'data-li': 'Número de páginas'}).find('span', class_='attr-data'))
-        characteristics_dict['language'] = self._get_text(soup.find('li', {'data-li': 'Idioma'}).find('span', class_='attr-data'))
-        characteristics_dict['publication_date'] = self._get_text(soup.find('li', {'data-li': 'Fecha de publicación'}).find('span', class_='attr-data'), strip=True)
-        characteristics_dict['dimensions'] = self._get_text(soup.find('li', {'data-li': 'Dimensiones'}).find('span', class_='attr-data'), strip=True)
+        characteristics_dict['pages'] = self._get_text(soup.find('li', {'data-li': 'Número de páginas'}).find('span', class_='attr-data')) if soup.find('li', {'data-li': 'Número de páginas'}) else "No se encontró el elemento 'Número de páginas'"
+        characteristics_dict['language'] = self._get_text(soup.find('li', {'data-li': 'Idioma'}).find('span', class_='attr-data')) if soup.find('li', {'data-li': 'Idioma'}) else "No se encontró el elemento 'Idioma'"
+        characteristics_dict['publication_date'] = self._get_text(soup.find('li', {'data-li': 'Fecha de publicación'}).find('span', class_='attr-data'), strip=True) if soup.find('li', {'data-li': 'Fecha de publicación'}) else "No se encontró el elemento 'Fecha de publicación'"
+        characteristics_dict['dimensions'] = self._get_text(soup.find('li', {'data-li': 'Dimensiones'}).find('span', class_='attr-data'), strip=True) if soup.find('li', {'data-li': 'Dimensiones'}) else "No se encontró el elemento 'Dimensiones'"
         return characteristics_dict
 
     def _get_image(self, soup):
@@ -83,7 +83,7 @@ headers = {
     "Accept-Language": "en-MX, en;q=0.9"
 }
 
-url = "https://www.gandhi.com.mx/harry-potter-y-la-camara-secreta-ed-minalima"
+url = "https://www.gandhi.com.mx/derroche-mapa-de-las-lenguas"
 
 book_scraper = BookScraper(url)
 book_scraper.scrape_book_info()
