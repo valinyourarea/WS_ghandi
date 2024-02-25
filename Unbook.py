@@ -1,9 +1,15 @@
 from bs4 import BeautifulSoup # Sirve para extraccion de datos 
 import json # Convierte a un documento tipo json
 import requests # Descarga del html de los datos 
-
+import asyncio # Sirve para hacer peticiones asincronicas
+import aiohttp # Sirve para hacer solicitudes HTTP como requests pero de forma asincrona
 
 #Main class
+from bs4 import BeautifulSoup
+import json
+import asyncio
+import aiohttp
+
 class BookScraper:
     def __init__(self, url):
         self.url = url
@@ -18,26 +24,27 @@ class BookScraper:
         self.charact = None
         self.img = None
 
-    #Se hace el scraper de nuestro libro
-    def scraper_book(self):
+    #Se hace el scraper de nuestro libro de forma asincrona 
+    async def scraper_book(self):
         self.headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0",
                         "Accept-Language": "en-MX, en;q=0.9"}
-        response = requests.get(self.url, headers=self.headers)
-        
-        if response.status_code != 200:
-            raise Exception(f"GET request to {self.url} returned status code {response.status_code}")
-        
-        self.soup = BeautifulSoup(response.content, 'html.parser')
 
-    def name(self):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(self.url, headers=self.headers) as response:
+                if response.status != 200: 
+                    raise Exception(f"GET request to {self.url} returned status code {response.status}")
+                
+                text = await response.text()
+                self.soup = BeautifulSoup(text, 'html.parser')
+
+    async def name(self):
         title_element = self.soup.find('span', class_='base')
         if title_element:
             self.title_e = title_element.text.strip()
         else:
-            print("No title element found")   
-
-            
-    def author(self):
+            print("No title element found")
+          
+    async def author(self):
         author_element = self.soup.find('div', class_='autor')
         if author_element:
             author_link = author_element.a
@@ -48,7 +55,7 @@ class BookScraper:
         else:
              print("No author div element found")
 
-    def editorial(self):
+    async def editorial(self):
         editorial_element = self.soup.find('div', class_='editoriales')
         if editorial_element:
             editorial_link = editorial_element.a
@@ -57,7 +64,7 @@ class BookScraper:
             else:
                 print("No editorial element found")
 
-    def ISBN(self):
+    async def ISBN(self):
         isbn_element = self.soup.find('div', class_='isbn')
         isbn2 = isbn_element.find_all('span')
         if len(isbn2) > 1:
@@ -66,21 +73,21 @@ class BookScraper:
             print("No se encontró un segundo span.")
         
         
-    def cover(self):
+    async def cover(self):
         cover_element = self.soup.find('div', class_='product-item-format')
         if cover_element:
             self.cover_e = cover_element.text.strip()
         else:
             print("No cover element found")
 
-    def price(self):
+    async def price(self):
         price_element = self.soup.find('span', class_='price')
         if price_element:
             self.prices = price_element.text.strip()
         else:
             print("No price element found")
 
-    def synopsis(self):
+    async def synopsis(self):
         synopsis_element = self.soup.find('div', class_='data item content')
         if synopsis_element:
             self.syp = synopsis_element.text.strip()
@@ -88,7 +95,7 @@ class BookScraper:
             print("No synopsis element found")
     
 
-    def characteristics(self):
+    async def characteristics(self):
         characters_list = []
         pages_element = self.soup.find('li', {'data-li': 'Número de páginas'})
         if pages_element:
@@ -118,7 +125,7 @@ class BookScraper:
 
 
     
-    def image_cover(self):
+    async def image_cover(self):
          img_element = self.soup.select('div.single-image-product a img')
          if img_element:
            self.img = img_element[0].get('data-srclazy')
@@ -126,16 +133,16 @@ class BookScraper:
              print("No image element found")
 
 
-    def all_elements(self):
-        self.name()
-        self.author()
-        self.editorial()
-        self.ISBN()
-        self.cover()
-        self.price()
-        self.synopsis()
-        self.characteristics()
-        self.image_cover()
+    async def all_elements(self):
+        await self.name()
+        await self.author()
+        await self.editorial()
+        await self.ISBN()
+        await self.cover()
+        await self.price()
+        await self.synopsis()
+        await self.characteristics()
+        await self.image_cover()
         attributes = {
             'name': self.title_e,
             'author': self.authors,
@@ -149,3 +156,11 @@ class BookScraper:
         }
         return json.dumps(attributes, ensure_ascii=False, indent= 2) 
 
+
+
+# Creamos una instancia de la clase
+scraper = BookScraper('https://www.gandhi.com.mx/gabriel-garcia-marquez-11')
+
+# Ejecutar los métodos en el bucle de eventos
+asyncio.run(scraper.scraper_book())
+print(asyncio.run(scraper.all_elements()))
