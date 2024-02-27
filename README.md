@@ -64,10 +64,8 @@ Arch
 - [Postman](https://drive.google.com/file/d/1LrQHQGQEd-zbskE5vLpU46Yx-8I0mGk5/view?usp=sharing)
 
 # How to Use The Code?
+
 To use WS_Ghandi code, first:
-
-move to your work space in your bash or teminal and clone the repository.
-
 **Code Description**
 This code is a web scraper that extracts information about a book from a webpage and returns it in JSON format. It utilizes the BeautifulSoup, json, requests, asyncio, and aiohttp libraries.
 
@@ -78,6 +76,32 @@ To run this code, you'll need to have the following Python libraries installed:
 **beautifulsoup4**: You can install it using:
 
 ```pip install beautifulsoup4```
+
+**aiohttp**: You can install it using:
+
+```pip install aiohttp```
+
+Now: 
+
+1. move to your work space in your GIT BASH or teminal and clone the repository.
+
+```https://github.com/valinyourarea/WS_ghandi.git```
+
+2. Once you have the repository cloned, open the repository.
+
+```cd ws_ghandi```
+
+3. Now,go to put it in docker.
+   
+```docker compose build```
+
+4. Run our container.
+
+```docker compose up```
+
+
+5. Copy the first link and paste it in Postman with/scraper, select body and there click "raw", and you will put the JSON option (Is in blue) with the link of the Ghandi product like this image.
+
 
 
 
