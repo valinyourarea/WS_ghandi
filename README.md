@@ -98,14 +98,16 @@ Now:
 4. Run our container.
 
 ```docker compose up```
+
 [Click here to see the example](https://drive.google.com/file/d/1Hzblw5jUKHsrivb0vVIlzvEUyB04km9n/view?usp=sharing)
 
 
 5. Copy the first link and paste it in Postman with/scraper, select body and there click "raw", and you will put the JSON option (Is in blue) with the link of the Ghandi product like this image.
+6. 
    [click here to see the example](https://drive.google.com/file/d/1xl4SSBrH7r5aiNC0xwXZj9wW2DQtmXV8/view?usp=sharing)
 
-6. Check that the type of method in Postman is set as POST. After all that, give a click in SEND.
-7. It is done. To exit, execute this:
+7. Check that the type of method in Postman is set as POST. After all that, give a click in SEND.
+8. It is done. To exit, execute this:
 ```ctrl c```
 
 ```docker compose down```
