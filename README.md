@@ -38,3 +38,47 @@ Fedora
 Arch
 
   ```sudo pacman -S git```
+
+- **Docker**
+  
+Debian/Ubuntu
+
+```sudo apt-get update```
+
+```sudo apt-get install docker.io```
+
+```sudo apt-get install docker-compose```
+
+Fedora
+
+```sudo dnf install docker```
+
+```sudo dnf install docker-compose```
+
+Arch
+
+```sudo pacman -S docker```
+
+```yay -S docker-compose```
+
+- [Postman](https://drive.google.com/file/d/1LrQHQGQEd-zbskE5vLpU46Yx-8I0mGk5/view?usp=sharing)
+
+# How to Use The Code?
+To use WS_Ghandi code, first:
+
+move to your work space in your bash or teminal and clone the repository.
+
+**Code Description**
+This code is a web scraper that extracts information about a book from a webpage and returns it in JSON format. It utilizes the BeautifulSoup, json, requests, asyncio, and aiohttp libraries.
+
+**Requirements**
+
+To run this code, you'll need to have the following Python libraries installed:
+
+**beautifulsoup4**: You can install it using:
+
+```pip install beautifulsoup4```
+
+
+
+
