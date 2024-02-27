@@ -31,10 +31,10 @@ Today, Gandhi Bookstores has a presence in Mexico City and in several states acr
 
 ```sudo apt-get install git```
 
-  Fedora
+   Fedora
 
   ```sudo dnf install git```
 
-  Arch
+   Arch
 
   ```sudo pacman -S git```
