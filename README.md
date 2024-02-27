@@ -98,7 +98,7 @@ Now:
 4. Run our container.
 
 ```docker compose up```
-![container](cap.png)
+![img](Captura-de-pantalla-2024-02-26-234048.png)
 
 
 5. Copy the first link and paste it in Postman with/scraper, select body and there click "raw", and you will put the JSON option (Is in blue) with the link of the Ghandi product like this image.
