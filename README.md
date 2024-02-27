@@ -24,17 +24,17 @@ Today, Gandhi Bookstores has a presence in Mexico City and in several states acr
 **Linux**
 
 - **GitHub**
-  
-  Debian/Ubuntu
+
+Debian/Ubuntu
   
 ```sudo apt-get update```
 
 ```sudo apt-get install git```
 
-   Fedora
+Fedora
 
   ```sudo dnf install git```
 
-   Arch
+Arch
 
   ```sudo pacman -S git```
