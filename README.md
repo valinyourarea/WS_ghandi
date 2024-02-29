@@ -117,7 +117,7 @@ Now:
 
 # How Was It Developed?
 Here's a file with some of what was used to develop the main code, both libraries and flask are there better explained
-[Click here](https://drive.google.com/file/d/17rXBThsKwtgwNPyDDwPFMcbYW4r2TYpe/view?usp=sharing
+[Click here](https://drive.google.com/file/d/17rXBThsKwtgwNPyDDwPFMcbYW4r2TYpe/view?usp=sharing)
 
 # Future Developments
 - Add support for scraping all products with a given name.
